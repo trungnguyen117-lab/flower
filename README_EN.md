@@ -85,9 +85,9 @@ Copy an `.mp3` file to `public/music.mp3`.
 
 2. **Go to [vercel.com](https://vercel.com)** → Sign in with GitHub → **Add New** → **Project** → Import repo `women-day-bloom-card`.
 
-3. **Create KV (Redis) for storing cards**:
-   - In the Vercel project: **Storage** → **Create Database** → choose **KV** (or **Upstash Redis** from Marketplace).
-   - After creating → **Connect to Project** → select this project; Vercel will add `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically.
+3. **Create Redis for storing cards** (required):
+   - In the Vercel project: **Storage** → **Create Database** → choose **Upstash Redis** (or KV).
+   - After creating → **Connect to Project** → select this project. Vercel will add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_*` if using KV).
 
 4. **Optional**: In **Settings** → **Environment Variables** add `ADMIN_PASSCODE` to change the `/manager-cards` password (default: `08032026`).
 

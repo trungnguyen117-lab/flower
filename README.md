@@ -85,9 +85,9 @@ Copy file `.mp3` vào `public/music.mp3`.
 
 2. **Vào [vercel.com](https://vercel.com)** → Sign in (GitHub) → **Add New** → **Project** → Import repo `women-day-bloom-card`.
 
-3. **Tạo KV (Redis) để lưu thiệp**:
-   - Trong project Vercel: **Storage** → **Create Database** → chọn **KV** (hoặc **Upstash Redis** trên Marketplace).
-   - Tạo xong → **Connect to Project** → chọn project → Vercel sẽ tự thêm `KV_REST_API_URL` và `KV_REST_API_TOKEN`.
+3. **Tạo Redis để lưu thiệp** (bắt buộc):
+   - Trong project Vercel: **Storage** → **Create Database** → chọn **Upstash Redis** (hoặc KV).
+   - Tạo xong → **Connect to Project** → chọn project. Vercel sẽ tự thêm `UPSTASH_REDIS_REST_URL` và `UPSTASH_REDIS_REST_TOKEN` (hoặc `KV_REST_API_*` nếu dùng KV).
 
 4. **Tuỳ chọn**: Trong **Settings** → **Environment Variables** thêm `ADMIN_PASSCODE` nếu muốn đổi mật khẩu trang `/manager-cards` (mặc định: `08032026`).
 
