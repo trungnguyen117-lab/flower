@@ -1,7 +1,7 @@
 "use client"
 
 import { FaGithub, FaXTwitter } from "react-icons/fa6"
-import { PiFlowerTulipFill } from "react-icons/pi"
+import { PiGraduationCapFill } from "react-icons/pi"
 
 export function Footer() {
   return (
@@ -27,8 +27,8 @@ export function Footer() {
         </a>
       </div>
       <p className="text-xs text-stone-400 flex items-center justify-center gap-1.5">
-        <PiFlowerTulipFill className="w-3.5 h-3.5 text-rose-400" />
-        <span>&copy; 2026 trunguye2n. Made with love.</span>
+        <PiGraduationCapFill className="w-3.5 h-3.5 text-grad-blue-400" />
+        <span>&copy; 2026 trunguye2n. Made with 🎓 for HTTT-UET.</span>
       </p>
     </footer>
   )

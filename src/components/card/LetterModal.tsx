@@ -4,25 +4,22 @@ import { useRef, useEffect, useState, useCallback } from "react"
 import { animate } from "animejs"
 import { PiXBold } from "react-icons/pi"
 import Image from "next/image"
-import { PetalRain } from "@/components/effects/PetalRain"
+import { GradConfetti } from "@/components/effects/GradConfetti"
 
-function HeartDecor({ position }: { position: "top-right" | "bottom-left" }) {
+function StarDecor({ position }: { position: "top-right" | "bottom-left" }) {
   const pos = position === "top-right"
     ? { right: 5, top: 10 }
     : { left: 5, bottom: 10 }
 
   return (
-    <div className="absolute" style={{ ...pos, width: 30, height: 30, borderRadius: "50%", backgroundColor: "#FFEBEB", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 10 }}>
-      <div style={{ position: "relative", width: 10, height: 10, transform: "rotate(45deg)", backgroundColor: "#FF6666" }}>
-        <div style={{ position: "absolute", content: '""', width: "100%", height: "100%", borderRadius: "50%", backgroundColor: "inherit", top: "-50%" }} />
-        <div style={{ position: "absolute", content: '""', width: "100%", height: "100%", borderRadius: "50%", backgroundColor: "inherit", left: "-50%" }} />
-      </div>
+    <div className="absolute" style={{ ...pos, width: 30, height: 30, borderRadius: "50%", backgroundColor: "#e8f0fe", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 10 }}>
+      <span style={{ fontSize: 14, color: "#FFD700" }}>⭐</span>
     </div>
   )
 }
 
-function FloatingHeartsDecor() {
-  const hearts = [
+function FloatingStarsDecor() {
+  const stars = [
     { right: 60, top: "30%", size: 8, opacity: 0.4 },
     { right: 40, top: "45%", size: 6, opacity: 0.3 },
     { right: 80, top: "60%", size: 10, opacity: 0.4 },
@@ -31,12 +28,9 @@ function FloatingHeartsDecor() {
 
   return (
     <>
-      {hearts.map((h, i) => (
-        <div key={i} className="absolute" style={{ right: h.right, top: h.top, opacity: h.opacity }}>
-          <div style={{ position: "relative", width: h.size, height: h.size, transform: "rotate(45deg)", backgroundColor: "#FF9999" }}>
-            <div style={{ position: "absolute", width: "100%", height: "100%", borderRadius: "50%", backgroundColor: "inherit", top: "-50%" }} />
-            <div style={{ position: "absolute", width: "100%", height: "100%", borderRadius: "50%", backgroundColor: "inherit", left: "-50%" }} />
-          </div>
+      {stars.map((h, i) => (
+        <div key={i} className="absolute" style={{ right: h.right, top: h.top, opacity: h.opacity, fontSize: h.size * 2, color: "#FFD700" }}>
+          ✦
         </div>
       ))}
     </>
@@ -55,7 +49,7 @@ function GiftSection({ recipientImage }: { recipientImage?: string }) {
             width: "100%", height: "100%",
             objectFit: "cover",
             borderRadius: "12px 0 0 12px",
-            borderRight: "3px solid #fda4af",
+            borderRight: "3px solid #7aa8e0",
           }}
         />
       ) : (
@@ -76,7 +70,7 @@ function LetterTextContent({ titleText, bodyText, senderName }: { titleText: str
     }}>
       <h2 style={{
         fontSize: "clamp(18px, 4vw, 30px)", fontFamily: "var(--font-cursive), 'Dancing Script', cursive",
-        fontWeight: 700, color: "#292524", marginBottom: 4, flexShrink: 0,
+        fontWeight: 700, color: "#003366", marginBottom: 4, flexShrink: 0,
       }}>
         {titleText}
         <span style={{ animation: "blink 1s step-end infinite" }}>|</span>
@@ -92,11 +86,11 @@ function LetterTextContent({ titleText, bodyText, senderName }: { titleText: str
       </div>
       <p style={{
         fontSize: "clamp(14px, 3vw, 22px)", fontFamily: "var(--font-cursive), 'Dancing Script', cursive",
-        color: "#e11d48", fontWeight: 700, flexShrink: 0,
+        color: "#003366", fontWeight: 700, flexShrink: 0,
         textAlign: "right", width: "100%", paddingRight: 10, marginTop: 4,
         opacity: bodyText.length > 0 ? 1 : 0, transition: "opacity 1s",
       }}>
-        Từ: {senderName}
+        Trân trọng, {senderName}
       </p>
     </div>
   )
@@ -126,7 +120,7 @@ export function LetterModal({ recipientName, message, recipientImage, senderName
   }, [])
 
   // Typewriter: Title
-  const titleTarget = `Gửi ${recipientName}!`
+  const titleTarget = `Kính mời ${recipientName}!`
   useEffect(() => {
     let i = 0
     const interval = setInterval(() => {
@@ -161,9 +155,9 @@ export function LetterModal({ recipientName, message, recipientImage, senderName
     <div
       ref={overlayRef}
       className="fixed inset-0 z-[1000] flex items-center justify-center px-3 sm:px-4"
-      style={{ backgroundColor: "rgba(60,20,30,0.75)", opacity: 0 }}
+      style={{ backgroundColor: "rgba(0,25,50,0.75)", opacity: 0 }}
     >
-      <PetalRain />
+      <GradConfetti />
 
       {/* Close X */}
       <button onClick={handleClose} className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors cursor-pointer z-50">
@@ -176,28 +170,28 @@ export function LetterModal({ recipientName, message, recipientImage, senderName
         <div className="form-letter relative rounded-2xl shadow-lg" style={{
           width: "min(600px, 85vw)",
           height: "min(350px, 50vh)",
-          backgroundColor: "#FFEBEB",
+          backgroundColor: "#f0f4ff",
           zIndex: 100,
           padding: "12px 8px",
           opacity: 0,
         }}>
-          {/* Corner heart decorations */}
-          <HeartDecor position="top-right" />
-          <HeartDecor position="bottom-left" />
+          {/* Corner star decorations */}
+          <StarDecor position="top-right" />
+          <StarDecor position="bottom-left" />
 
-          <div className="relative w-full h-full rounded-2xl flex overflow-hidden" style={{ border: "2px dashed #FF6666" }}>
+          <div className="relative w-full h-full rounded-2xl flex overflow-hidden" style={{ border: "2px dashed #003366" }}>
             {/* Left: Gift image */}
             <GiftSection recipientImage={recipientImage} />
 
-            {/* Floating heart decorations */}
-            <FloatingHeartsDecor />
+            {/* Floating star decorations */}
+            <FloatingStarsDecor />
 
             {/* Right: Text content */}
             <LetterTextContent titleText={titleText} bodyText={bodyText} senderName={senderName} />
           </div>
 
           <div className="absolute" style={{ bottom: -10, left: "50%", transform: "translateX(-50%)", width: "clamp(120px, 35%, 200px)", zIndex: 50 }}>
-            <Image src="/ref/heartAnimation.gif" alt="Hearts" width={200} height={200} unoptimized className="w-full h-auto" />
+            <Image src="/ref/heartAnimation.gif" alt="Celebration" width={200} height={200} unoptimized className="w-full h-auto" />
           </div>
 
           <div className="absolute" style={{ bottom: 0, left: 0, width: "clamp(50px, 15%, 90px)", zIndex: 150 }}>

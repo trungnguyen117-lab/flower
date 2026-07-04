@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import { animate, createTimeline } from "animejs"
 import confetti from "canvas-confetti"
 import Image from "next/image"
-import { PetalRain } from "@/components/effects/PetalRain"
+import { GradConfetti } from "@/components/effects/GradConfetti"
 import { PiHeartFill } from "react-icons/pi"
 
 interface MessageRevealProps {
@@ -23,7 +23,7 @@ export function MessageReveal({ recipientName, message, senderName, recipientIma
       particleCount: 100,
       spread: 100,
       origin: { y: 0.6 },
-      colors: ["#fb7185", "#fda4af", "#fecdd3", "#fcd19e", "#fef3e2"],
+      colors: ["#003366", "#FFD700", "#1d4ed8", "#60a5fa", "#ffffff"],
     })
 
     const duration = 3000
@@ -34,14 +34,14 @@ export function MessageReveal({ recipientName, message, senderName, recipientIma
         angle: 60,
         spread: 55,
         origin: { x: 0, y: 0.7 },
-        colors: ["#fb7185", "#fda4af", "#fecdd3"],
+        colors: ["#003366", "#FFD700", "#1d4ed8"],
       })
       confetti({
         particleCount: 3,
         angle: 120,
         spread: 55,
         origin: { x: 1, y: 0.7 },
-        colors: ["#fb7185", "#fda4af", "#fecdd3"],
+        colors: ["#003366", "#FFD700", "#1d4ed8"],
       })
       if (Date.now() < end) requestAnimationFrame(frame)
     }
@@ -93,19 +93,19 @@ export function MessageReveal({ recipientName, message, senderName, recipientIma
 
   return (
     <div ref={rootRef} className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-      <PetalRain />
+      <GradConfetti />
 
       {/* Ambient Glows */}
-      <div className="glow-orb w-80 h-80 bg-rose-200 top-[10%] left-[5%]" />
-      <div className="glow-orb w-64 h-64 bg-orange-100 bottom-[10%] right-[5%]" style={{ animationDelay: "2s" }} />
+      <div className="glow-orb w-80 h-80 bg-grad-blue-200 top-[10%] left-[5%]" />
+      <div className="glow-orb w-64 h-64 bg-gold-100 bottom-[10%] right-[5%]" style={{ animationDelay: "2s" }} />
 
       <div className="relative z-10 text-center max-w-2xl mx-auto w-full">
-        <p className="reveal-subtitle text-rose-400 font-medium mb-3 text-sm tracking-widest uppercase" style={{ opacity: 0 }}>
-          Happy Women&apos;s Day
+        <p className="reveal-subtitle text-grad-blue-400 font-medium mb-3 text-sm tracking-widest uppercase" style={{ opacity: 0 }}>
+          🎓 THIỆP MỜI TỐT NGHIỆP 🎓
         </p>
 
         {recipientImage && (
-          <div 
+          <div
             className="polaroid-photo mx-auto mb-6 bg-white p-2.5 pb-8 sm:p-3 sm:pb-10 shadow-lg rounded-sm w-32 h-40 sm:w-40 sm:h-48 flex-shrink-0 relative transform rotate-3"
             style={{ opacity: 0 }}
           >
@@ -118,33 +118,33 @@ export function MessageReveal({ recipientName, message, senderName, recipientIma
                 unoptimized
               />
             </div>
-            {/* Vệt dán băng keo (tuỳ chọn) */}
+            {/* Decorative tape */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-4 bg-stone-200/60 rotate-2 backdrop-blur-sm shadow-sm" />
           </div>
         )}
 
         <h1 className="reveal-heading text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-stone-900 mb-6 leading-tight" style={{ opacity: 0 }}>
-          Gửi{" "}
-          <span className="bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent">
+          Kính mời{" "}
+          <span className="bg-gradient-to-r from-grad-blue-600 to-grad-blue-500 bg-clip-text text-transparent">
             {recipientName}
           </span>
         </h1>
 
-        <div className="reveal-card bg-white/70 backdrop-blur-sm p-8 sm:p-10 rounded-2xl shadow-lg border border-rose-100 relative" style={{ opacity: 0 }}>
-          <span className="absolute top-3 left-4 text-rose-300 text-2xl select-none">&ldquo;</span>
-          <span className="absolute bottom-3 right-4 text-rose-300 text-2xl select-none">&rdquo;</span>
+        <div className="reveal-card bg-white/70 backdrop-blur-sm p-8 sm:p-10 rounded-2xl shadow-lg border border-grad-blue-100 relative" style={{ opacity: 0 }}>
+          <span className="absolute top-3 left-4 text-grad-blue-300 text-2xl select-none">&ldquo;</span>
+          <span className="absolute bottom-3 right-4 text-grad-blue-300 text-2xl select-none">&rdquo;</span>
           <p className="text-xl sm:text-2xl text-stone-700 leading-relaxed font-serif whitespace-pre-wrap">
             {message}
           </p>
-          <div className="mt-6 text-right w-full pt-4 border-t border-rose-100/50">
-            <p className="font-serif text-lg text-rose-500 font-semibold italic">
-              Từ: {senderName}
+          <div className="mt-6 text-right w-full pt-4 border-t border-grad-blue-100/50">
+            <p className="font-serif text-lg text-grad-blue-600 font-semibold italic">
+              Trân trọng, {senderName}
             </p>
           </div>
         </div>
 
         <p className="reveal-footer mt-8 text-sm text-stone-400 flex items-center justify-center gap-1.5" style={{ opacity: 0 }}>
-          Made with <PiHeartFill className="w-3.5 h-3.5 text-rose-400" /> by trunguye2n
+          Made with <PiHeartFill className="w-3.5 h-3.5 text-grad-blue-400" /> by trunguye2n
         </p>
       </div>
     </div>

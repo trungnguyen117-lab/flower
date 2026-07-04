@@ -19,11 +19,11 @@ const dancingScript = Dancing_Script({
 })
 
 export const metadata: Metadata = {
-  title: "trunguye2n — Tạo thiệp chúc mừng 8/3 ✿",
-  description: "Tạo thiệp chúc mừng ngày Quốc tế Phụ nữ 8/3 đẹp mắt, gửi bất ngờ cho người đặc biệt!",
+  title: "trunguye2n — Tạo thiệp mời tốt nghiệp HTTT-UET 🎓",
+  description: "Tạo thiệp mời tốt nghiệp ngành Hệ Thống Thông Tin, Khoa CNTT, Đại học Công Nghệ - ĐHQGHN. Gửi bất ngờ cho bạn bè và người thân!",
   openGraph: {
-    title: "trunguye2n ✿",
-    description: "Ai đó đã gửi cho bạn một món quà bất ngờ ngày 8/3!",
+    title: "trunguye2n — Thiệp mời tốt nghiệp HTTT-UET 🎓",
+    description: "Bạn nhận được thiệp mời tốt nghiệp từ một sinh viên ngành Hệ Thống Thông Tin, UET-VNU!",
   },
 }
 

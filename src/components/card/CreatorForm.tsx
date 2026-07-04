@@ -5,21 +5,21 @@ import { createCard, uploadMusicChunk, finalizeMusicUpload } from "@/lib/actions
 import { animate } from "animejs"
 import {
   PiArrowRightBold, PiCopyBold, PiCheckBold, PiSparkle,
-  PiFlowerTulipFill, PiEnvelopeSimpleFill, PiImageBold, PiXBold,
+  PiGraduationCapFill, PiEnvelopeSimpleFill, PiImageBold, PiXBold,
   PiMusicNoteFill
 } from "react-icons/pi"
-import { HeartQR } from "./HeartQR"
+import { GradQR } from "./GradQR"
 
 const THEMES = [
-  { id: "catch-me", label: "Catch Me 🌸", desc: 'Nút "Không" chạy trốn — buộc phải bấm "Có"!', icon: PiFlowerTulipFill },
-  { id: "love-letter", label: "Thư Tình 💌", desc: "Phong bì + hoa hồng vẽ nét + thư tay kiểu vintage", icon: PiEnvelopeSimpleFill },
+  { id: "grad-cap", label: "Mũ Tốt Nghiệp 🎓", desc: 'Nút "Không" chạy trốn — buộc phải bấm "Có"!', icon: PiGraduationCapFill },
+  { id: "formal-invitation", label: "Thiệp Mời Trang Trọng 💌", desc: "Phong bì trang trọng + thư mời kiểu cổ điển", icon: PiEnvelopeSimpleFill },
 ]
 
 export function CreatorForm() {
   const [senderName, setSenderName] = useState("")
   const [recipientName, setRecipientName] = useState("")
   const [message, setMessage] = useState("")
-  const [theme, setTheme] = useState("catch-me")
+  const [theme, setTheme] = useState("grad-cap")
   const [recipientImage, setRecipientImage] = useState<string | undefined>()
   const [customMusic, setCustomMusic] = useState<string | undefined>()
   const [musicName, setMusicName] = useState<string>("")
@@ -95,7 +95,6 @@ export function CreatorForm() {
   const handleImageChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    // Max 5MB to keep in-memory store reasonable
     if (file.size > 5 * 1024 * 1024) {
       alert("Ảnh quá lớn, vui lòng chọn ảnh dưới 5MB")
       return
@@ -112,7 +111,6 @@ export function CreatorForm() {
   const handleMusicChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    // Max 5MB for music
     if (file.size > 5 * 1024 * 1024) {
       alert("File nhạc quá lớn, vui lòng chọn file dưới 5MB")
       return
@@ -132,7 +130,7 @@ export function CreatorForm() {
     startTransition(async () => {
       try {
         const res = await createCard(senderName, recipientName, message, theme, recipientImage, !!customMusic)
-        
+
         if (customMusic) {
           const CHUNK_SIZE = 500000;
           const chunks = [];
@@ -165,14 +163,14 @@ export function CreatorForm() {
     return (
       <div ref={resultRef} className="w-full max-w-lg mx-auto text-center space-y-6" style={{ opacity: 0 }}>
         <div className="p-8 bg-white rounded-2xl shadow-lg border border-stone-100">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
-            <PiSparkle className="w-8 h-8 text-rose-500" />
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-grad-blue-100 to-gold-100 flex items-center justify-center">
+            <PiSparkle className="w-8 h-8 text-grad-blue-600" />
           </div>
           <h3 className="text-2xl font-serif font-bold text-stone-900 mb-2">
-            Thiệp đã sẵn sàng!
+            Thiệp mời đã sẵn sàng!
           </h3>
           <p className="text-stone-500 mb-6">
-            Gửi link này cho <strong className="text-rose-500">{recipientName}</strong> để xem bất ngờ!
+            Gửi link này cho <strong className="text-grad-blue-600">{recipientName}</strong> để xem thiệp mời!
           </p>
           <div className="flex items-center gap-2 p-3 bg-stone-50 rounded-xl border border-stone-200">
             <input
@@ -188,17 +186,17 @@ export function CreatorForm() {
               {copied ? "Đã copy!" : "Copy"}
             </button>
           </div>
-          
+
           <div className="mt-8 pt-8 border-t border-stone-100 flex flex-col items-center">
             <p className="text-sm text-stone-500 mb-4">Hoặc tải mã QR để gửi trực tiếp:</p>
-            <HeartQR url={shareUrl} recipientName={recipientName} />
+            <GradQR url={shareUrl} recipientName={recipientName} />
           </div>
         </div>
         <button
           onClick={() => { setResult(null); setSenderName(""); setRecipientName(""); setMessage(""); setRecipientImage(undefined); setCustomMusic(undefined); setMusicName("") }}
           className="text-sm text-stone-500 hover:text-stone-700 underline underline-offset-4 transition-colors"
         >
-          ← Tạo thiệp khác
+          ← Tạo thiệp mời khác
         </button>
       </div>
     )
@@ -212,42 +210,42 @@ export function CreatorForm() {
     >
       <div className="space-y-2 form-field" style={{ opacity: 0 }}>
         <label className="block text-sm font-medium text-stone-600">
-          Tên bạn (người gửi)
+          Tên sinh viên tốt nghiệp
         </label>
         <input
           type="text"
           value={senderName}
           onChange={(e) => setSenderName(e.target.value)}
           placeholder="Tên của bạn..."
-          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent transition-all text-base"
+          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-grad-blue-300 focus:border-transparent transition-all text-base"
           required
         />
       </div>
 
       <div className="space-y-2 form-field" style={{ opacity: 0 }}>
         <label className="block text-sm font-medium text-stone-600">
-          Tên người nhận
+          Tên người được mời
         </label>
         <input
           type="text"
           value={recipientName}
           onChange={(e) => setRecipientName(e.target.value)}
-          placeholder="Chị / Mẹ / Bạn gái..."
-          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent transition-all text-base"
+          placeholder="Bố / Mẹ / Bạn bè..."
+          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-grad-blue-300 focus:border-transparent transition-all text-base"
           required
         />
       </div>
 
       <div className="space-y-2 form-field" style={{ opacity: 0 }}>
         <label className="block text-sm font-medium text-stone-600">
-          Lời chúc của bạn
+          Lời mời & thông tin
         </label>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Chúc chị ngày 8/3 thật vui vẻ và hạnh phúc!..."
+          placeholder="Mời bạn đến dự lễ tốt nghiệp của mình vào ngày... tại..."
           rows={4}
-          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent transition-all text-base resize-none"
+          className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-grad-blue-300 focus:border-transparent transition-all text-base resize-none"
           required
         />
       </div>
@@ -255,7 +253,7 @@ export function CreatorForm() {
       {/* Image upload */}
       <div className="space-y-2 form-field" style={{ opacity: 0 }}>
         <label className="block text-sm font-medium text-stone-600">
-          Ảnh người nhận (tuỳ chọn)
+          Ảnh kỷ niệm (tuỳ chọn)
         </label>
         <input
           ref={fileInputRef}
@@ -265,7 +263,7 @@ export function CreatorForm() {
           className="hidden"
         />
         {recipientImage ? (
-          <div className="relative w-24 h-24 rounded-xl overflow-hidden border-2 border-rose-300 shadow-sm">
+          <div className="relative w-24 h-24 rounded-xl overflow-hidden border-2 border-grad-blue-300 shadow-sm">
             <img src={recipientImage} alt="Preview" className="w-full h-full object-cover" />
             <button
               type="button"
@@ -279,7 +277,7 @@ export function CreatorForm() {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed border-stone-200 bg-white text-stone-500 hover:border-rose-300 hover:text-rose-500 transition-all cursor-pointer w-full justify-center"
+            className="flex items-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed border-stone-200 bg-white text-stone-500 hover:border-grad-blue-300 hover:text-grad-blue-600 transition-all cursor-pointer w-full justify-center"
           >
             <PiImageBold className="w-5 h-5" />
             Thêm ảnh
@@ -300,8 +298,8 @@ export function CreatorForm() {
           className="hidden"
         />
         {customMusic ? (
-          <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-rose-300 bg-rose-50">
-            <PiMusicNoteFill className="w-5 h-5 text-rose-500 shrink-0" />
+          <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-grad-blue-300 bg-grad-blue-50">
+            <PiMusicNoteFill className="w-5 h-5 text-grad-blue-600 shrink-0" />
             <span className="text-sm text-stone-700 truncate flex-1">{musicName}</span>
             <button
               type="button"
@@ -315,7 +313,7 @@ export function CreatorForm() {
           <button
             type="button"
             onClick={() => musicInputRef.current?.click()}
-            className="flex items-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed border-stone-200 bg-white text-stone-500 hover:border-rose-300 hover:text-rose-500 transition-all cursor-pointer w-full justify-center"
+            className="flex items-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed border-stone-200 bg-white text-stone-500 hover:border-grad-blue-300 hover:text-grad-blue-600 transition-all cursor-pointer w-full justify-center"
           >
             <PiMusicNoteFill className="w-5 h-5" />
             Thêm nhạc
@@ -337,11 +335,11 @@ export function CreatorForm() {
                 onClick={() => setTheme(t.id)}
                 className={`p-4 rounded-xl border-2 text-left transition-all flex items-start gap-3 cursor-pointer ${
                   theme === t.id
-                    ? "border-rose-400 bg-rose-50 shadow-sm"
+                    ? "border-grad-blue-400 bg-grad-blue-50 shadow-sm"
                     : "border-stone-200 bg-white hover:border-stone-300"
                 }`}
               >
-                <Icon className="w-5 h-5 text-rose-500 mt-0.5 shrink-0" />
+                <Icon className="w-5 h-5 text-grad-blue-600 mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold text-stone-800">{t.label}</p>
                   <p className="text-sm text-stone-500 mt-0.5">{t.desc}</p>
@@ -356,7 +354,7 @@ export function CreatorForm() {
         <button
           type="submit"
           disabled={isPending || !senderName.trim() || !recipientName.trim() || !message.trim()}
-          className="w-full py-4 px-6 bg-gradient-to-r from-rose-500 to-rose-600 text-white font-semibold rounded-xl shadow-lg shadow-rose-500/25 hover:shadow-xl hover:shadow-rose-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base cursor-pointer"
+          className="w-full py-4 px-6 bg-gradient-to-r from-grad-blue-600 to-grad-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-grad-blue-500/25 hover:shadow-xl hover:shadow-grad-blue-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base cursor-pointer"
         >
           {isPending ? (
             <span className="flex items-center gap-2">
@@ -365,7 +363,7 @@ export function CreatorForm() {
             </span>
           ) : (
             <span className="flex items-center gap-2">
-              Tạo link bất ngờ
+              Tạo thiệp mời tốt nghiệp
               <PiArrowRightBold className="w-5 h-5" />
             </span>
           )}

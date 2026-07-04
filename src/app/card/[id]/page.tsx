@@ -10,13 +10,13 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
   const card = await fetchCard(id)
-  
+
   return {
-    title: card ? `Lời chúc cho ${card.recipientName} ✿` : "trunguye2n",
-    description: card ? "Ai đó đã gửi cho bạn một bất ngờ ngày 8/3!" : "Không tìm thấy thiệp.",
+    title: card ? `Thiệp mời tốt nghiệp cho ${card.recipientName} 🎓` : "trunguye2n",
+    description: card ? "Bạn nhận được thiệp mời tốt nghiệp ngành Hệ Thống Thông Tin, UET-VNU!" : "Không tìm thấy thiệp mời.",
     openGraph: {
-      title: card ? `🌷 ${card.recipientName}, bạn có bất ngờ!` : "trunguye2n",
-      description: "Mở ra để xem lời chúc đặc biệt dành cho bạn ✿",
+      title: card ? `🎓 ${card.recipientName}, bạn có thiệp mời tốt nghiệp!` : "trunguye2n",
+      description: "Nhấn để xem thiệp mời tốt nghiệp ngành Hệ Thống Thông Tin, Khoa CNTT, Đại học Công Nghệ - ĐHQGHN! 🎉",
     },
   }
 }

@@ -12,7 +12,7 @@ export default function PasscodeProtection({ children }: { children: React.React
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     startTransition(async () => {
       const isValid = await verifyAdminPasscode(passcode)
       if (isValid) {
@@ -30,14 +30,14 @@ export default function PasscodeProtection({ children }: { children: React.React
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6" style={{ backgroundColor: "#fae1dd" }}>
-      <div className="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl max-w-sm w-full border border-rose-100 text-center">
-        <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <PiLockKeyBold className="w-8 h-8 text-rose-500" />
+    <div className="min-h-screen flex items-center justify-center p-6" style={{ backgroundColor: "#e8f0fe" }}>
+      <div className="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl max-w-sm w-full border border-grad-blue-100 text-center">
+        <div className="w-16 h-16 bg-grad-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <PiLockKeyBold className="w-8 h-8 text-grad-blue-600" />
         </div>
         <h2 className="text-2xl font-serif font-bold text-stone-800 mb-2">Trang Quản Trị</h2>
-        <p className="text-stone-500 text-sm mb-8">Vui lòng nhập mã bảo mật để xem danh sách thiệp.</p>
-        
+        <p className="text-stone-500 text-sm mb-8">Vui lòng nhập mã bảo mật để xem danh sách thiệp mời.</p>
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <input
@@ -46,7 +46,7 @@ export default function PasscodeProtection({ children }: { children: React.React
               onChange={(e) => setPasscode(e.target.value)}
               placeholder="Nhập mã bảo mật..."
               className={`w-full px-4 py-3 rounded-xl border outline-none text-center tracking-[0.2em] font-mono transition-colors ${
-                error ? "border-red-300 bg-red-50 text-red-600 focus:border-red-400" : "border-stone-200 focus:border-rose-400 bg-stone-50/50"
+                error ? "border-red-300 bg-red-50 text-red-600 focus:border-red-400" : "border-stone-200 focus:border-grad-blue-400 bg-stone-50/50"
               }`}
               autoFocus
             />
@@ -55,7 +55,7 @@ export default function PasscodeProtection({ children }: { children: React.React
           <button
             type="submit"
             disabled={isPending}
-            className={`w-full py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors ${
+            className={`w-full py-3 bg-grad-blue-600 hover:bg-grad-blue-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors ${
               isPending ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
             }`}
           >

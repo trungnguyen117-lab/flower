@@ -56,7 +56,7 @@ export function MusicToggle({ src }: { src?: string }) {
     return () => document.removeEventListener("click", handleFirstClick)
   }, [playing])
 
-  const musicSrc = src || "/music.mp3"
+  const musicSrc = src || "/how.mp3"
   const [volume, setVolume] = useState(0.6)
   const [showVolumeTip, setShowVolumeTip] = useState(false)
   const hideTipTimeout = useRef<NodeJS.Timeout | null>(null)
@@ -107,12 +107,12 @@ export function MusicToggle({ src }: { src?: string }) {
           toggle()
         }}
         style={{ opacity: 0 }}
-        className="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-rose-200 shadow-lg flex items-center justify-center transition-all hover:bg-rose-50 hover:scale-110 cursor-pointer"
+        className="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-grad-blue-200 shadow-lg flex items-center justify-center transition-all hover:bg-grad-blue-50 hover:scale-110 cursor-pointer"
         aria-label={playing ? "Tắt nhạc" : "Bật nhạc"}
         title="Cuộn chuột để chỉnh âm lượng"
       >
         {playing && volume > 0 ? (
-          <PiMusicNoteFill className="w-5 h-5 text-rose-500" />
+          <PiMusicNoteFill className="w-5 h-5 text-grad-blue-600" />
         ) : (
           <PiSpeakerSlashFill className="w-5 h-5 text-stone-400" />
         )}

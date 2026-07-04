@@ -9,12 +9,12 @@ export function DodgeButton() {
   const msgRef = useRef<HTMLParagraphElement>(null)
 
   const messages = [
-    "Đừng mà!",
-    "Bấm Có đi!",
-    "Eiii đừng nè~",
+    "Đừng trốn nữa!",
+    "Nhận lời mời đi!",
+    "Ơ kìa đừng né~",
     "Chịu chưa??",
-    "Hông được đâu!",
-    "Bấm CÓ nhaaa~",
+    "Tốt nghiệp vui lắm!",
+    "Đến dự nhaaa~",
   ]
 
   const dodge = useCallback(() => {
@@ -63,7 +63,7 @@ export function DodgeButton() {
       {dodgeCount > 0 && (
         <p
           ref={msgRef}
-          className="absolute -bottom-8 text-sm text-rose-400 font-medium"
+          className="absolute -bottom-8 text-sm text-grad-blue-500 font-medium"
         >
           {messages[Math.min(dodgeCount - 1, messages.length - 1)]}
         </p>
